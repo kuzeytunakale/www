@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Ziyaretçi Sayacı</title>
+<script>
+// Ziyaretçi sayısını saklamak için bir değişken
+let ziyaretciSayisi = 0;
+
+// Sayfa her yüklendiğinde ziyaretçi sayısını artır
+window.onload = function() {
+  ziyaretciSayisi++;
+  document.getElementById('sayac').innerText = ziyaretciSayisi;
+};
+</script>
+</head>
+<body>
+<h1>Web Sitemize Hoş Geldiniz!</h1>
+<p>Bu sayfayı ziyaret eden kişi sayısı: <span id="sayac">0</span></p>
+</body>
+</html>

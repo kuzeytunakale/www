@@ -26,18 +26,19 @@ window.onload = function() {
     <br>
     <div id="kutu"></div>
     <br>
-    <a id="tikla" href="https://doodles.google/doodle/doodle-champion-island-games-begin/"></a>
     <script>
         function Yazdir(){
             var i = 1;
             var interval = setInterval(function() {
-            if(i <= 100000000000000000000000) {
-                document.getElementById("kutu").textContent = i + "/100";
+            if(i <= 1099766210) {
+                document.getElementById("kutu").textContent = i;
                 i++;
-            
+            }
         }, 70);
         }
-        Yazdir()
+        Yazdir;
+        var btnYaz=document.getElementById("btn");
+        btnYaz.onclick=Yazdir;
  	
     </script>
 </body>

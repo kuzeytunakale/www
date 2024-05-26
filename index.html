@@ -18,5 +18,27 @@ window.onload = function() {
 <body>
 <h1>Web Sitemize Hoş Geldiniz!</h1>
 <p>Bu sayfayı ziyaret eden kişi sayısı: <span id="sayac">0</span></p>
+
+  <br><br><br>
+
+  <button id="btn">TIKLA</button>
+    <br>
+    <br>
+    <div id="kutu"></div>
+    <br>
+    <a id="tikla" href="https://doodles.google/doodle/doodle-champion-island-games-begin/"></a>
+    <script>
+        function Yazdir(){
+            var i = 1;
+            var interval = setInterval(function() {
+            if(i <= 100000000000000000000000) {
+                document.getElementById("kutu").textContent = i + "/100";
+                i++;
+            
+        }, 70);
+        }
+        Yazdir()
+ 	
+    </script>
 </body>
 </html>

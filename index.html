@@ -4,12 +4,13 @@
 <meta charset="UTF-8">
 <title>Ziyaretçi Sayacı</title>
 <script>
-// Ziyaretçi sayısını saklamak için bir değişken
-let ziyaretciSayisi = 0;
+// Local Storage'dan ziyaretçi sayısını al veya 0 olarak başlat
+let ziyaretciSayisi = localStorage.getItem('ziyaretciSayisi') ? parseInt(localStorage.getItem('ziyaretciSayisi')) : 0;
 
-// Sayfa her yüklendiğinde ziyaretçi sayısını artır
+// Sayfa her yüklendiğinde ziyaretçi sayısını artır ve Local Storage'a kaydet
 window.onload = function() {
   ziyaretciSayisi++;
+  localStorage.setItem('ziyaretciSayisi', ziyaretciSayisi);
   document.getElementById('sayac').innerText = ziyaretciSayisi;
 };
 </script>

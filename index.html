@@ -17,28 +17,25 @@ window.onload = function() {
 </head>
 <body>
 <h1>Web Sitemize Hoş Geldiniz!</h1>
-<p>Bu sayfayı ziyaret eden kişi sayısı: <span id="sayac">0</span></p>
+<p>Bu sayfayı sizin ziyaret ediş sayınız: <span id="sayac">0</span></p>
 
   <br><br><br>
-
-  <button id="btn">TIKLA</button>
-    <br>
-    <br>
-    <div id="kutu"></div>
+   <br>
+    <br><b>
+    <div id="kutu"></div></b>
     <br>
     <script>
         function Yazdir(){
             var i = 1;
             var interval = setInterval(function() {
-            if(i <= 1099766210) {
+            if(i <= 1000) {
                 document.getElementById("kutu").textContent = i;
                 i++;
             }
         }, 70);
         }
         Yazdir()
-        var btnYaz=document.getElementById("btn");
-        btnYaz.onclick=Yazdir;
+        
  	
     </script>
 </body>

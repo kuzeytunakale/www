@@ -3,21 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <title>Ziyaretçi Sayacı</title>
-<script>
-// Local Storage'dan ziyaretçi sayısını al veya 0 olarak başlat
-let ziyaretciSayisi = localStorage.getItem('ziyaretciSayisi') ? parseInt(localStorage.getItem('ziyaretciSayisi')) : 0;
-
-// Sayfa her yüklendiğinde ziyaretçi sayısını artır ve Local Storage'a kaydet
-window.onload = function() {
-  ziyaretciSayisi++;
-  localStorage.setItem('ziyaretciSayisi', ziyaretciSayisi);
-  document.getElementById('sayac').innerText = ziyaretciSayisi;
-};
-</script>
 </head>
 <body>
 <h1>Web Sitemize Hoş Geldiniz!</h1>
-<p>Bu sayfayı sizin ziyaret ediş sayınız: <span id="sayac">0</span></p>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    fetch('https://api.countapi.xyz/hit/kuzeytunakale.github.io/www/visits')
+      .then(response => response.json())
+      .then(data => {
+        const counterElement = document.getElementById('visitorCounter');
+        if (counterElement) {
+          counterElement.textContent = data.value;
+        }
+      })
+      .catch(console.error);
+  });
+</script>
+<p>Ziyaretçi Sayısı: <span id="visitorCounter">Yükleniyor...</span></p>
+
 
   <br><br><br>
    <br>

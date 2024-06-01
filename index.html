@@ -22,7 +22,24 @@
 </script>
 <p>Ziyaretçi Sayısı: <span id="visitorCounter">Yükleniyor...</span></p>
 
+<script>
+// GitHub ziyaretçi sayacı
+(function() {
+  // Sayacınızın değerini saklayacak olan dosyanın URL'si
+  var countUrl = 'https://api.countapi.xyz/hit/username/reponame'; // 'username' ve 'reponame' kendi GitHub kullanıcı adınız ve repo adınızla değiştirin
 
-  
+  // Sayacı güncellemek için bir HTTP GET isteği yapın
+  fetch(countUrl)
+    .then(response => response.json())
+    .then(data => {
+      // Sayacın değerini alın ve bir HTML elementine yazdırın
+      var visitorCount = data.value;
+      document.getElementById('visitorCount').textContent = visitorCount;
+    })
+    .catch(console.error);
+})();
+</script>
+  <p>Ziyaretçi Sayısı: <span id="visitorCount">yükleniyor...</span></p>
+
 </body>
 </html>

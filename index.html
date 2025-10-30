@@ -2,13 +2,13 @@
 <html>
 <body>
 <script>
-fetch("https://api.github.com/repos/kuzeytunakale/kuzeytunakale.github.io/contents/www")
+fetch("https://api.github.com/repos/kuzeytunakale/www/contents")
 .then(r=>r.json())
 .then(d=>{
   d.filter(f=>/\.(png|jpe?g|gif|webp|svg)$/i.test(f.name))
    .forEach(f=>{
      let i=document.createElement("img");
-     i.src="https://raw.githubusercontent.com/kuzeytunakale/kuzeytunakale.github.io/main/www/"+f.name;
+     i.src="https://raw.githubusercontent.com/kuzeytunakale/www/main/"+f.name;
      i.width=200;
      document.body.appendChild(i);
    });

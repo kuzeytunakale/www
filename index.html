@@ -9,7 +9,7 @@ fetch("https://api.github.com/repos/kuzeytunakale/www/contents")
    .forEach(f=>{
      let i=document.createElement("img");
      i.src="https://raw.githubusercontent.com/kuzeytunakale/www/main/"+f.name;
-     i.width=200;
+     i.width=400;
      document.body.appendChild(i);
    });
 });

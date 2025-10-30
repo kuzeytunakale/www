@@ -1,13 +1,22 @@
-<a href="./yanlıs.pdf"> <button> Fen sorusu </button> </a>
-</br>
-<a href="./u.pdf"> <button> Fen sorusu yeni </button> </a>
-</br>
-<a href="./Full.pdf"> <button> Fen kanıtı yeni </button> </a>
-</br>
-<a href="./mevsimler-ve-iklim-test-1.pdf"> <button> Fen kanıtı yeni </button> </a>
-</br></br>
+<!doctype html>
+<html>
+<body>
+<script>
+fetch("https://api.github.com/repos/kuzeytunakale/kuzeytunakale.github.io/contents/www")
+.then(r=>r.json())
+.then(d=>{
+  d.filter(f=>/\.(png|jpe?g|gif|webp|svg)$/i.test(f.name))
+   .forEach(f=>{
+     let i=document.createElement("img");
+     i.src="https://raw.githubusercontent.com/kuzeytunakale/kuzeytunakale.github.io/main/www/"+f.name;
+     i.width=200;
+     document.body.appendChild(i);
+   });
+});
+</script>
+</body>
+</html>
 
-<a href="./Screenshot_20250826_122820_Samsung Notes.jpg"> <button> Din sorusu </button> </a>
 
 </br>
 fıtrat ne? temiz fıtrat ne demek?

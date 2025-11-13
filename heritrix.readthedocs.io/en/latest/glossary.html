@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glossary &mdash; Heritrix 3  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="REST API" href="api.html" /> 
+<script async type="text/javascript" src="../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="heritrix" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/glossary.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Heritrix 3
+          </a>
+              <div class="version">
+                3.12.1-SNAPSHOT
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started with Heritrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="operating.html">Operating Heritrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuring-jobs.html">Configuring Crawl Jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bean-reference.html">Bean Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">REST API</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="glossary.html#">Glossary</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#status-codes">Status codes</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Heritrix 3</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Glossary</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/glossary.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="glossary">
+<h1>Glossary<a class="headerlink" href="glossary.html#glossary" title="Permalink to this heading"></a></h1>
+<dl>
+<dt>Bytes, KB and statistics</dt><dd><p>Heritrix adheres to the following conventions for displaying byte and
+bit amounts:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Legend</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>B</p></td>
+<td><p>Bytes</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>KB</p></td>
+<td><p>Kilobytes</p></td>
+<td><p>1 KB = 1024 B</p></td>
+</tr>
+<tr class="row-even"><td><p>MB</p></td>
+<td><p>Megabytes</p></td>
+<td><p>1 MB = 1024 KB</p></td>
+</tr>
+<tr class="row-odd"><td><p>GB</p></td>
+<td><p>Gigabytes</p></td>
+<td><p>1 GB = 1024 MB</p></td>
+</tr>
+<tr class="row-even"><td><p>b</p></td>
+<td><p>bits</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Kb</p></td>
+<td><p>Kilobits</p></td>
+<td><p>1 Kb = 1000 b</p></td>
+</tr>
+<tr class="row-even"><td><p>Mb</p></td>
+<td><p>Megabits</p></td>
+<td><p>1 Mb = 1000 Kb</p></td>
+</tr>
+<tr class="row-odd"><td><p>Gb</p></td>
+<td><p>Gigabits</p></td>
+<td><p>1 Gb = 1000 Mb</p></td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Checkpointing</dt><dd><p>Heritrix checkpointing is heavily influenced by Mercator checkpointing.
+In <a class="reference external" href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.151.5202">one of the papers on
+Mercator</a>,
+checkpointing is described this way: “Checkpointing is an important
+part of any long-running process such as a web crawl. By checkpointing
+we mean writing a representation of the crawler’s state to stable
+storage that, in the event of a failure, is sufficient to allow the
+crawler to recover its state by reading the checkpoint and to resume
+crawling from the exact state it was in at the time of the checkpoint.
+By this definition, in the event of a failure, any work performed after
+the most recent checkpoint is lost, but none of the work up to the most
+recent checkpoint. In Mercator, the frequency with which the background
+thread performs a checkpoint is user-configurable; we typically
+checkpoint anywhere from 1 to 4 times per day.”</p>
+<p>See <a class="reference external" href="https://github.com/internetarchive/heritrix3/wiki/Frontier">Checkpointing</a>
+for a discussion of the Heritrix implementation.</p>
+</dd>
+<dt>CrawlURI</dt><dd><p>A URI and its associated data such as the parent URI and number of
+links.</p>
+</dd>
+<dt>Dates and Times</dt><dd><p>All times in Heritrix are GMT, assuming the clock and timezone on the
+local system are correct. This means that all dates/times in logs are
+GMT, all dates and times shown in the WUI are GMT, and any times or
+dates entered by the user must be in GMT.</p>
+</dd>
+<dt>Discovered URIs</dt><dd><p>A discovered URI is any URI that has been confirmed to be within
+“scope.” This includes URIs that have been processed, are being
+processed, and have finished processing. It does not include URIs that
+have been “forgotten.” Forgotten URIs are URIs deemed out of scope
+during fetch. This is most likely due to the operator changing the
+scope definition.</p>
+<p>Note: Since the same URI can be fetched multiple times (at least in most
+Frontiers), the number of discovered URIs may be somewhat lower then the
+combined queued, in process, and finished items. This is due to
+duplicate URIs being queued and processed. The variance is likely to be
+especially high in Frontiers implementing “revisit” strategies.</p>
+</dd>
+<dt>Discovery Path</dt><dd><p>Each URI has a discovery path. The path contains one character for each
+link or embed followed from the seed, for example “LLLE” might be an
+image on a page that’s 3 links away from a seed.</p>
+<p>The character legend is as follows:</p>
+<ul class="simple">
+<li><p>R - Redirect</p></li>
+<li><p>E - Embedded links necessary to render the page (such as <code class="docutils literal notranslate"><span class="pre">&lt;img</span> <span class="pre">src=...&gt;</span></code>)</p></li>
+<li><p>X - Speculative embed (aggressive JavaScript link extraction)</p></li>
+<li><p>L - Link (normal navigation links like <code class="docutils literal notranslate"><span class="pre">&lt;a</span> <span class="pre">href=...&gt;</span></code>)</p></li>
+<li><p>P - Prerequisite (such as DNS lookup or robots.txt)</p></li>
+<li><p>I - Inferred/implied links. Not necessarily in the source material, but deduced by convention (such as /favicon.ico)</p></li>
+<li><p>M - Manifest (such as links discovered from a sitemap file)</p></li>
+<li><p>S - Synthesized form-submit</p></li>
+</ul>
+<p>The discovery path of a seed is an empty string.</p>
+<p>The discovery path can be used to configure scope of a crawl using the
+HopsPathMatchesRegexDecideRule. It also appears in the crawl logs and in
+the WARC metadata records as the <code class="docutils literal notranslate"><span class="pre">hopsFromSeed</span></code> field.</p>
+</dd>
+<dt>Frontier</dt><dd><p>A Frontier is a pluggable module in Heritrix that maintains the internal
+state of the crawl. See
+<a class="reference external" href="https://github.com/internetarchive/heritrix3/wiki/Frontier">Frontier</a>.</p>
+</dd>
+<dt>Host</dt><dd><p>A host can serve multiple domains or a domain can be served by multiple
+hosts. For our purposes, a host is the same as the hostname in a URI.
+DNS is not considered because it is volatile and may be unavailable.
+For example, if multiple URIs point to the same ip address, they are
+considered three different logical hosts (at the same level of the
+URI/HTTP protocol).</p>
+<p>Conforming HTTP proxies behave similarly. They would not consider a URI
+and a IP address interchangeable.</p>
+<p>This is not ideal for politeness because it applies politeness rules to
+the physical host rather than the logical host.</p>
+</dd>
+<dt>Crawl Job</dt><dd><p>In order to run a crawl, a configuration must be created. In Heritrix
+such a configuration is called a <strong>crawl job</strong>. A crawl job is based on
+the <a class="reference external" href="http://www.springsource.org/">Spring</a> framework. The job uses
+Spring beans as configuration objects that define the crawl.</p>
+</dd>
+<dt>Link Hop Count</dt><dd><p>This is the number of links followed from the seed to reach a URI.
+Seeds have a link hop count of zero. Link hop count is equal to the
+count of <code class="docutils literal notranslate"><span class="pre">L's</span></code> in a URIs discovery path.</p>
+</dd>
+<dt>Pending URIs</dt><dd><p>This is the number of URIs that are waiting for detailed processing. It
+is also the number of discovered URIs that have not been inspected for
+scope or duplicates. Depending on the implementation of the Frontier
+this might always be zero. It may also be an adjusted number that
+accounts for duplicates.</p>
+</dd>
+<dt>Profile</dt><dd><p>A profile is a template for a crawl job. It contains all the
+configurations in a crawl job, but it is not considered “crawlable.”
+Heritrix will not allow you to directly crawl a profile. Only jobs
+based on profiles can be crawled.</p>
+<p>A common example of a profile configuration is leaving the
+<code class="docutils literal notranslate"><span class="pre">metadata.operatorContactUrl</span></code> property undefined to force the operator
+to input a valid value. This applies to the default profile that comes
+with Heritrix. Other examples would be to leave the seed list empty or
+not specify a mandatory processor.</p>
+<p>Profiles can be used as templates by leaving their configuration
+settings in an invalid state. In this way, an operator is forced to
+choose his or her settings when creating a job from a profile. This can
+be advantageous when an administrator must configure many different
+crawl jobs to accommodate his or her crawling policy.</p>
+</dd>
+<dt>Politeness</dt><dd><p>Politeness refers to attempts by the crawler software to limit the load
+on a site it is crawling. Without politeness restrictions the crawler
+might overwhelm smaller sites and even cause moderately sized sites to
+slow down significantly. Unless you have express permission to crawl a
+site aggressively, you should apply strict politeness rules to any
+crawl.</p>
+</dd>
+<dt>Queue States</dt><dd><table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>State</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ready</p></td>
+<td><p>Queues ready to emit a URL now.</p></td>
+</tr>
+<tr class="row-odd"><td><p>in-process</p></td>
+<td><p>Queues that have emitted a URL that is currently being processed.</p></td>
+</tr>
+<tr class="row-even"><td><p>snoozed</p></td>
+<td><p>Due to the crawl delay, or waiting before retries.</p></td>
+</tr>
+<tr class="row-odd"><td><p>active</p></td>
+<td><p>Total in-process + ready + snoozed</p></td>
+</tr>
+<tr class="row-even"><td><p>inactive</p></td>
+<td><p>Queues currently not being considered (due to queue rotation).</p></td>
+</tr>
+<tr class="row-odd"><td><p>ineligible</p></td>
+<td><p>Inactive queues where the queue precedence exceeds the precedence floor.</p></td>
+</tr>
+<tr class="row-even"><td><p>retired</p></td>
+<td><p>Disabled for some reason, e.g. that queue has hit it’s allocated quota.</p></td>
+</tr>
+<tr class="row-odd"><td><p>exhausted</p></td>
+<td><p>Queues that are now empty.</p></td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Queued URIs</dt><dd><p>The number of URIs queued and waiting for processing. Queued URIs
+include any URIs that failed to be fetched but will be retried.</p>
+</dd>
+<dt>Regular Expressions</dt><dd><p>All regular expressions in Heritrix are Java regular expressions.</p>
+<p>Java regular expressions differ from those used in other programming
+languages, like Perl. For detailed information on Java regular
+expressions see the Java API description of the
+<code class="docutils literal notranslate"><span class="pre">java.util.regex.Pattern</span></code> class.</p>
+</dd>
+<dt>SHA1</dt><dd><p>The Secure Hash Algorithm (SHA) used by Heritrix to encrypt files.</p>
+</dd>
+<dt>Server</dt><dd><p>A server is a service on a host. There may be more than one service on
+a host. Different services are usually differentiated by port number.</p>
+</dd>
+<dt>Spring</dt><dd><p>Spring is a Java application framework used by Heritrix. Crawl jobs are
+based on Spring components, known as “beans.” In order to view the
+Spring beans of a crawl configuration, use the <a class="reference external" href="configuring-jobs.html#browse-beans">Browse
+Beans</a> functionality.</p>
+</dd>
+<dt>SURT</dt><dd><p>SURT stands for Sort-friendly URI Reordering Transform. It is a
+transformation applied to URIs that makes their left-to-right
+representation better match the natural hierarchy of domain names.</p>
+<p>A URI <code class="docutils literal notranslate"><span class="pre">scheme://domain.tld/path?query</span></code> has a SURT form of
+<code class="docutils literal notranslate"><span class="pre">scheme://(tld,domain,)/path?query</span></code>.</p>
+<p>Conversion to SURT form also involves making all characters lowercase
+and changing the https scheme to http. Further, the “/” character after
+a URI authority component will only appear in SURT form if it appears in
+plain URI form. An example of a URI authority component is the third
+slash in a regular HTTP URI. This convention proves important when
+using real URIs as a shorthand for SURT prefixes.</p>
+<p>SURT form URIs are typically not used to specify exact URIs for
+fetching. Rather, SURT form is useful when comparing or sorting URIs.
+URIs in SURT format sort into natural groups. For example, all
+“archive.org” URIs will be adjacent, regardless of subdomains such as
+“books.archive.org” or “movies.archive.org.”</p>
+<p>Most importantly, a SURT form URI, or a truncated version of a SURT form
+URI can be used as a SURT prefix. A SURT prefix will often correspond
+to all URIs within a common area of interest. For example, the prefix
+<code class="docutils literal notranslate"><span class="pre">http://(is,</span></code> will be shared by all URIs in the <code class="docutils literal notranslate"><span class="pre">.is</span></code> top-level domain.</p>
+</dd>
+<dt>SURT Prefix</dt><dd><p>A URI in SURT form, especially if truncated, may be of use as a “SURT
+prefix,” a shared prefix string of all SURT form URIs in the same area
+of interest. For example, the prefix <code class="docutils literal notranslate"><span class="pre">http://(is.,</span></code> will be shared by all
+SURT form URIs in the <code class="docutils literal notranslate"><span class="pre">.is</span></code> top-level domain. The prefix
+<code class="docutils literal notranslate"><span class="pre">http://(org,archive.www,)/movies</span></code> will be shared by all URIs at
+www.archive.org with a path beginning with /movies.
+<code class="docutils literal notranslate"><span class="pre">http://(org,archive.www,)/movies</span></code> is also a valid full SURT form URI.</p>
+<p>A collection of sorted SURT prefixes is an efficient way to specify a
+desired crawl scope. For example, any URI whose SURT form starts with
+any of the prefixes should be included.</p>
+<p>A small set of conventions can be used to calculate an “implied SURT
+prefix” from a regular URI, such as a URI supplied as a crawl seed.
+These conventions are:</p>
+<ol class="arabic simple">
+<li><p>Convert the URI to its SURT form.</p></li>
+<li><p>If there are at least three slashes (“/”) in the SURT form, remove
+everything after the last slash. For example,
+<code class="docutils literal notranslate"><span class="pre">http://(org,example,www,)/main/subsection/</span></code> is unchanged.
+<code class="docutils literal notranslate"><span class="pre">http://(org,example,www,)/main/subsection</span></code> is truncated to
+<code class="docutils literal notranslate"><span class="pre">http://(org,example,www,)/main/.</span></code> <code class="docutils literal notranslate"><span class="pre">http://(org.example,www,)/</span></code> is
+unchanged and <code class="docutils literal notranslate"><span class="pre">http://(org,example,www)</span></code> is unchanged.</p></li>
+<li><p>If the resulting form ends in an off-parenthesis (“)”), remove the
+off-parenthesis. Each of the above examples except the last one is
+unchanged. The last one <code class="docutils literal notranslate"><span class="pre">http://(org,example,www,)</span></code> becomes
+<code class="docutils literal notranslate"><span class="pre">http://(org,example,www,</span></code>.</p></li>
+</ol>
+<p>This allows many seed URIs, in their usual form, to imply the most
+useful SURT prefixes for crawling related URIs. The presence or absence
+of a trailing “/” on URIs without further path-info is a subtle
+indicator as to whether subdomains of the supplied domain should be
+included.</p>
+<p>For example, seed <code class="docutils literal notranslate"><span class="pre">http://www.archive.org/</span></code> will become SURT form and
+supplied SURT prefix <code class="docutils literal notranslate"><span class="pre">http://(org,archive,www,)/,</span></code> and is the prefix of
+all SURT form URIs on www.archive.org. However, any subdomain URI like
+<code class="docutils literal notranslate"><span class="pre">http://homepages.www.archive.org/directory</span></code> would be ruled out because
+its SURT form <code class="docutils literal notranslate"><span class="pre">http://(org,archive,www,homepages,)/directory</span></code> does not
+begin with the full SURT prefix, including the “)” deduced from the
+seed.</p>
+</dd>
+<dt>Toe Threads</dt><dd><p>When crawling, Heritrix employs a configurable number of Toe Threads to
+process URIs. Each of these threads will request a URI from the
+<a class="reference external" href="https://github.com/internetarchive/heritrix3/wiki/Frontier">Frontier</a>,
+apply the set of Processors to it, and finally report it as completed to
+the Frontier.</p>
+</dd>
+</dl>
+<section id="status-codes">
+<span id="id2"></span><h2>Status codes<a class="headerlink" href="glossary.html#status-codes" title="Permalink to this heading"></a></h2>
+<p>Each crawled URI gets a status code.  This code (or number) indicates
+the result of a URI fetch in Heritrix.</p>
+<p>Codes ranging from 200 to 599 are standard HTTP response codes and
+information about their meanings is available at the <a class="reference external" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">World Wide Web
+consortium’s Web
+page</a>.</p>
+<p>Other Heritrix status codes are listed below.</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>Successful DNS lookup</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>Fetch never tried (perhaps protocol unsupported or illegal URI)</p></td>
+</tr>
+<tr class="row-odd"><td><p>-1</p></td>
+<td><p>DNS lookup failed</p></td>
+</tr>
+<tr class="row-even"><td><p>-2</p></td>
+<td><p>HTTP connect failed</p></td>
+</tr>
+<tr class="row-odd"><td><p>-3</p></td>
+<td><p>HTTP connect broken</p></td>
+</tr>
+<tr class="row-even"><td><p>-4</p></td>
+<td><p>HTTP timeout</p></td>
+</tr>
+<tr class="row-odd"><td><p>-5</p></td>
+<td><p>Unexpected runtime exception.  See runtime-errors.log.</p></td>
+</tr>
+<tr class="row-even"><td><p>-6</p></td>
+<td><p>Prerequisite domain-lookup failed, precluding fetch attempt.
+(the main pre-requisite is WHOIS lookup. If you see this it’s likely the domain doesn’t exist anymore)</p></td>
+</tr>
+<tr class="row-odd"><td><p>-7</p></td>
+<td><p>URI recognized as unsupported or illegal.</p></td>
+</tr>
+<tr class="row-even"><td><p>-8</p></td>
+<td><p>Multiple retries failed, retry limit reached.</p></td>
+</tr>
+<tr class="row-odd"><td><p>-50</p></td>
+<td><p>Temporary status assigned to URIs awaiting preconditions.  Appearance in logs may be a bug.</p></td>
+</tr>
+<tr class="row-even"><td><p>-60</p></td>
+<td><p>URIs assigned a failure status.  They could not be queued by the Frontier and may be unfetchable.</p></td>
+</tr>
+<tr class="row-odd"><td><p>-61</p></td>
+<td><p>Prerequisite robots.txt fetch failed, precluding a fetch attempt.</p></td>
+</tr>
+<tr class="row-even"><td><p>-62</p></td>
+<td><p>Some other prerequisite failed, precluding a fetch attempt.</p></td>
+</tr>
+<tr class="row-odd"><td><p>-63</p></td>
+<td><p>A prerequisite (of any type) could not be scheduled, precluding a fetch attempt.</p></td>
+</tr>
+<tr class="row-even"><td><p>-404</p></td>
+<td><p>Empty HTTP response interpreted as a 404.</p></td>
+</tr>
+<tr class="row-odd"><td><p>-3000</p></td>
+<td><p>Severe Java Error condition occured such as OutOfMemoryError or StackOverflowError during URI processing.</p></td>
+</tr>
+<tr class="row-even"><td><p>-4000</p></td>
+<td><p>“Chaff” detection of traps/content with negligible value applied.</p></td>
+</tr>
+<tr class="row-odd"><td><p>-4001</p></td>
+<td><p>The URI is too many link hops away from the seed.</p></td>
+</tr>
+<tr class="row-even"><td><p>-4002</p></td>
+<td><p>The URI is too many embed/transitive hops away from the last URI in scope.</p></td>
+</tr>
+<tr class="row-odd"><td><p>-5000</p></td>
+<td><p>The URI is out of scope upon reexamination.  This only happens if the scope changes during the crawl.</p></td>
+</tr>
+<tr class="row-even"><td><p>-5001</p></td>
+<td><p>Blocked from fetch by user setting.</p></td>
+</tr>
+<tr class="row-odd"><td><p>-5002</p></td>
+<td><p>Blocked by a custom processor, which could include the hash mapper (for multi-node crawling) if enabled.</p></td>
+</tr>
+<tr class="row-even"><td><p>-5003</p></td>
+<td><p>Blocked due to exceeding an established quota.</p></td>
+</tr>
+<tr class="row-odd"><td><p>-5004</p></td>
+<td><p>Blocked due to exceeding an established runtime</p></td>
+</tr>
+<tr class="row-even"><td><p>-6000</p></td>
+<td><p>Deleted from Frontier by user.</p></td>
+</tr>
+<tr class="row-odd"><td><p>-7000</p></td>
+<td><p>Processing thread was killed by the operator.  This could happen if a thread is an a non-responsive condition.</p></td>
+</tr>
+<tr class="row-even"><td><p>-9998</p></td>
+<td><p>Robots.txt rules precluded fetch.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="api.html" class="btn btn-neutral float-left" title="REST API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Internet Archive and contributors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

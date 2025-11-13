@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Getting Started with Heritrix &mdash; Heritrix 3  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Operating Heritrix" href="operating.html" />
+    <link rel="prev" title="Heritrix 3 Documentation" href="index.html" /> 
+<script async type="text/javascript" src="../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="heritrix" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/getting-started.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Heritrix 3
+          </a>
+              <div class="version">
+                3.12.1-SNAPSHOT
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="getting-started.html#">Getting Started with Heritrix</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#system-requirements">System Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#environment-variables">Environment Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#running-heritrix">Running Heritrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#accessing-the-user-interface">Accessing the User Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#your-first-crawl">Your First Crawl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting-started.html#exiting-heritrix">Exiting Heritrix</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="operating.html">Operating Heritrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuring-jobs.html">Configuring Crawl Jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bean-reference.html">Bean Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">REST API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Heritrix 3</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Getting Started with Heritrix</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/getting-started.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="getting-started-with-heritrix">
+<h1>Getting Started with Heritrix<a class="headerlink" href="getting-started.html#getting-started-with-heritrix" title="Permalink to this heading"></a></h1>
+<section id="system-requirements">
+<h2>System Requirements<a class="headerlink" href="getting-started.html#system-requirements" title="Permalink to this heading"></a></h2>
+<p>Heritrix is primarily used on Linux. It may run on other platforms but is not regularly tested or supported on them.</p>
+<p>Heritrix requires Java 17 or later. We recommend using your Linux distribution’s OpenJDK packages. Alternatively up to
+date builds of OpenJDK for several platforms are available from <a class="reference external" href="https://adoptium.net/">Adoptium</a>.</p>
+<p>The default Java heap for Heritrix is 256MB RAM, which is usually suitable for crawls that range over hundreds of
+hosts.  Assign more of your available RAM to the heap if you are crawling thousands of hosts or experience Java
+out-of-memory problems.  You can use the JAVA_OPTS variable to configure memory</p>
+</section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="getting-started.html#installation" title="Permalink to this heading"></a></h2>
+<p>Download the latest Heritrix distribution package linked from the <a class="reference external" href="https://github.com/internetarchive/heritrix3/releases">Heritrix releases page</a> and unzip it somewhere.</p>
+<p>The installation will contain the following subdirectories:</p>
+<dl class="simple">
+<dt>bin</dt><dd><p>contains shell scripts/batch files for launching Heritrix.</p>
+</dd>
+<dt>lib</dt><dd><p>contains the third-party .jar files the Heritrix application requires to run.</p>
+</dd>
+<dt>conf</dt><dd><p>contains various configuration files (such as the configuration for Java logging, and pristine versions of the bundled profiles)</p>
+</dd>
+<dt>jobs</dt><dd><p>the default location where operator-created jobs are stored</p>
+</dd>
+</dl>
+</section>
+<section id="environment-variables">
+<h2>Environment Variables<a class="headerlink" href="getting-started.html#environment-variables" title="Permalink to this heading"></a></h2>
+<ol class="arabic">
+<li><p>Set the <code class="docutils literal notranslate"><span class="pre">JAVA_HOME</span></code> environment variable. The value should point to your Java installation.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/lib/jvm/java-11-openjdk
+</pre></div>
+</div>
+</li>
+<li><p>Set the <code class="docutils literal notranslate"><span class="pre">HERITRIX_HOME</span></code> environment variable. The value should be set to the path where Heritrix is installed.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">HERITRIX_HOME</span><span class="o">=</span>/home/user/heritrix3.1
+</pre></div>
+</div>
+</li>
+<li><p>Set execute permission on the Heritirix startup file.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>chmod<span class="w"> </span>u+x<span class="w"> </span><span class="nv">$HERITRIX_HOME</span>/bin/heritrix
+</pre></div>
+</div>
+</li>
+<li><p>To change the amount of memory allocated to Heritrix (the Java heap size), set the <code class="docutils literal notranslate"><span class="pre">JAVA_OPTS</span></code> environment
+variable. The following example allocates 1GB of memory to Heritrix.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">JAVA_OPTS</span><span class="o">=</span>-Xmx1024M
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="running-heritrix">
+<h2>Running Heritrix<a class="headerlink" href="getting-started.html#running-heritrix" title="Permalink to this heading"></a></h2>
+<p>To launch Heritrix with the Web UI enabled, enter the following command. The username and password for the Web UI are
+set to “admin” and “admin”, respectively.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">$HERITRIX_HOME</span>/bin/heritrix<span class="w"> </span>-a<span class="w"> </span>admin:admin
+</pre></div>
+</div>
+<p>By default, the Web UI listening address is only bound to the ‘localhost’ address. Therefore, the Web UI can only be
+accessed on the same machine from which it was launched. The ‘-b’ option may be used to listen on
+different/additional addresses. See <a class="reference internal" href="operating.html#security-considerations"><span class="std std-ref">Security Considerations</span></a> before changing this
+default.</p>
+<p>If the parameter supplied to the <code class="docutils literal notranslate"><span class="pre">-a</span></code> option is a file path beginning with “&#64;”, the admin username and password
+will be read from a file. This adds an additional layer of protection to the admin username and password by ensuring
+they don’t appear directly in the command-line and can’t be seen by other users running the <code class="docutils literal notranslate"><span class="pre">ps</span></code> command.</p>
+</section>
+<section id="accessing-the-user-interface">
+<h2>Accessing the User Interface<a class="headerlink" href="getting-started.html#accessing-the-user-interface" title="Permalink to this heading"></a></h2>
+<p>After Heritrix has been launched, the Web-based user interface (WUI) becomes accessible.</p>
+<p>The URI to access the Web UI is typically</p>
+<p><a class="reference external" href="https://localhost:8443/">https://localhost:8443/</a></p>
+<p>The initial login page prompts for the username and password. After login, your session will time-out after a period
+of non-use.</p>
+<p>Access to the WUI is through HTTPS. Heritrix is installed with a keystore containing a self-signed certificate. This
+will cause your browser to display a prompt, warning that a self-signed certificate is being used. Follow the steps
+below for your browser to login to Heritrix for the first time.</p>
+<p><strong>Chrome:</strong> The message “Your connection is not private” is displayed. Click the “Advanced” button and then click
+“Proceed to localhost (unsafe).”</p>
+<p><strong>Firefox:</strong> The message “Warning: Potential Security Risk Ahead” is displayed. Click the “Advanced…” button and then
+click “Accept the Risk and Continue.”</p>
+</section>
+<section id="your-first-crawl">
+<h2>Your First Crawl<a class="headerlink" href="getting-started.html#your-first-crawl" title="Permalink to this heading"></a></h2>
+<ol class="arabic">
+<li><p>Enter the name of the new job in the text box with the “create new job” label. Then click “create”.</p></li>
+<li><p>Click on the name of the new job and you will be taken to the job page.</p></li>
+<li><p>Click on the “Configuration” link at the top and the contents of the job configuration file will be displayed.</p></li>
+<li><p>At this point you must enter several properties to make the job runnable.</p>
+<ol class="arabic simple">
+<li><p>First, add the URL of page explaining how webmasters can contact you to the metadata.operatorContactUrl property.</p></li>
+<li><p>Next, populate the <code class="docutils literal notranslate"><span class="pre">&lt;prop&gt;</span></code> element of the <code class="docutils literal notranslate"><span class="pre">longerOverrides</span></code> bean with the seed values for the crawl. A
+test seed is configured for reference.</p></li>
+<li><p>When done click “save changes” at the top of the page.</p></li>
+</ol>
+<p>For more detailed information on configuring
+jobs see <a class="reference external" href="https://github.com/internetarchive/heritrix3/wiki/Configuring%20Jobs%20and%20Profiles">Configuring Jobs and Profiles</a></p>
+</li>
+<li><p>From the job screen, click “build.” This command will validate the job configuration and load it into memory. In
+the Job Log the following message will display: “INFO JOB instantiated.”</p></li>
+<li><p>Next, click the “launch” button.  This command launches the job in “paused” mode. At this point the job is ready
+to run.</p></li>
+<li><p>To run the job, click the “unpause” button. The job will now begin sending requests to the seeds of your crawl.
+The status of the job will be set to “Running.” Refresh the page to see updated statistics.</p></li>
+<li><p>When you want to stop your crawl, click the “terminate” button to finish and then “teardown” to unload the job
+configuration from memory.</p></li>
+</ol>
+</section>
+<section id="exiting-heritrix">
+<h2>Exiting Heritrix<a class="headerlink" href="getting-started.html#exiting-heritrix" title="Permalink to this heading"></a></h2>
+<p>To exit Heritrix get back to the main page by clicking “Engine” in the top bar. Then check the “I’m sure” box under
+“Exit Java” and click the “exit java process” button.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Heritrix 3 Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="operating.html" class="btn btn-neutral float-right" title="Operating Heritrix" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Internet Archive and contributors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Operating Heritrix &mdash; Heritrix 3  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Configuring Crawl Jobs" href="configuring-jobs.html" />
+    <link rel="prev" title="Getting Started with Heritrix" href="getting-started.html" /> 
+<script async type="text/javascript" src="../../_/static/javascript/readthedocs-addons.js"></script><meta name="readthedocs-project-slug" content="heritrix" /><meta name="readthedocs-version-slug" content="latest" /><meta name="readthedocs-resolver-filename" content="/operating.html" /><meta name="readthedocs-http-status" content="200" /></head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Heritrix 3
+          </a>
+              <div class="version">
+                3.12.1-SNAPSHOT
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started with Heritrix</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="operating.html#">Operating Heritrix</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="operating.html#running-heritrix">Running Heritrix</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="operating.html#command-line-options">Command-line Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="operating.html#environment-variables">Environment Variables</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="operating.html#running-heritrix-under-docker">Running Heritrix under Docker</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="operating.html#configurations">Configurations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="operating.html#security-considerations">Security Considerations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="operating.html#understanding-the-risks">Understanding the Risks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="operating.html#network-access-control">Network Access Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="operating.html#login-authentication-access-control">Login Authentication Access Control</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="operating.html#log-files">Log Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="operating.html#alerts-log">alerts.log</a></li>
+<li class="toctree-l3"><a class="reference internal" href="operating.html#crawl-log">crawl.log</a></li>
+<li class="toctree-l3"><a class="reference internal" href="operating.html#progress-statistics-log">progress-statistics.log</a></li>
+<li class="toctree-l3"><a class="reference internal" href="operating.html#runtime-errors-log">runtime-errors.log</a></li>
+<li class="toctree-l3"><a class="reference internal" href="operating.html#uri-errors-log">uri-errors.log</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="operating.html#reports">Reports</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="operating.html#crawl-summary-crawl-report-txt">Crawl Summary (crawl-report.txt)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="operating.html#seeds-seeds-report-txt">Seeds (seeds-report.txt)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="operating.html#hosts-hosts-report-txt">Hosts (hosts-report.txt)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="operating.html#sourcetags-source-report-txt">SourceTags (source-report.txt)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="operating.html#mimetypes-mimetype-report-txt">Mimetypes (mimetype-report.txt)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="operating.html#responsecode-responsecode-report-txt">ResponseCode (responsecode-report.txt)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="operating.html#processors-processors-report-txt">Processors (processors-report.txt)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="operating.html#frontiersummary-frontier-summary-report-txt">FrontierSummary (frontier-summary-report.txt)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="operating.html#toethreads-threads-report-txt">ToeThreads (threads-report.txt)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="operating.html#action-directory">Action Directory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="operating.html#checkpointing">Checkpointing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="operating.html#automated-checkpointing">Automated Checkpointing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="operating.html#restarting-from-a-checkpoint">Restarting from a Checkpoint</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="operating.html#crawl-recovery">Crawl Recovery</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="operating.html#full-recovery">Full recovery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="operating.html#split-recovery">Split Recovery</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configuring-jobs.html">Configuring Crawl Jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bean-reference.html">Bean Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">REST API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Heritrix 3</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Operating Heritrix</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/operating.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="operating-heritrix">
+<h1>Operating Heritrix<a class="headerlink" href="operating.html#operating-heritrix" title="Permalink to this heading"></a></h1>
+<section id="running-heritrix">
+<h2>Running Heritrix<a class="headerlink" href="operating.html#running-heritrix" title="Permalink to this heading"></a></h2>
+<p>To launch Heritrix with the Web UI enabled, enter the following command.  The username and password for the Web UI
+are set to “admin” and “admin”, respectively.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">$HERITRIX_HOME</span>/bin/heritrix<span class="w"> </span>-a<span class="w"> </span>admin:admin
+</pre></div>
+</div>
+<p>By default, the Web UI listening address is only bound to the ‘localhost’ address.  Therefore, the Web UI can only be
+accessed on the same machine from which it was launched. The ‘-b’ option may be used to listen on
+different/additional addresses.  See <a class="reference internal" href="operating.html#id1">Security Considerations</a> before changing this default.</p>
+<section id="command-line-options">
+<h3>Command-line Options<a class="headerlink" href="operating.html#command-line-options" title="Permalink to this heading"></a></h3>
+<dl class="option-list">
+<dt><kbd><span class="option">-a</span>, <span class="option">--web-admin <var>ARG</var></span></kbd></dt>
+<dd><p><strong>(Required)</strong> Sets the username and password required to access the Web UI.</p>
+<p>The argument may be a <code class="docutils literal notranslate"><span class="pre">USERNAME:PASSWORD</span></code> such as <code class="docutils literal notranslate"><span class="pre">admin:admin</span></code>. If the argument is a string
+beginning with “&#64;”, the rest of the string is interpreted as a local file name containing the operator
+login and password.</p>
+</dd>
+<dt><kbd><span class="option">-b</span>, <span class="option">--web-bind-hosts <var>HOST</var></span></kbd></dt>
+<dd><blockquote>
+<div><p>Specifies a comma-separated list of hostnames/IP-addresses to bind to the Web UI. You may use ‘/’ as a
+shorthand for ‘all addresses’.  <strong>Default</strong>: <code class="docutils literal notranslate"><span class="pre">localhost/127.0.0.1</span></code></p>
+</div></blockquote>
+<dl class="simple">
+<dt>-c,–checkpoint ARG</dt><dd><p>Recovers from the given checkpoint. May only be used with the –run-job option. The special value ‘latest’
+will recover the last checkpoint or if none exist will launch a new crawl.</p>
+</dd>
+</dl>
+</dd>
+<dt><kbd><span class="option">-j</span>, <span class="option">--job-dirs <var>PATH</var></span></kbd></dt>
+<dd><p>Sets the directory Heritrix stores jobs in. <strong>Default:</strong> <code class="docutils literal notranslate"><span class="pre">$HERITRIX_HOME/jobs</span></code></p>
+</dd>
+<dt><kbd><span class="option">-l</span>, <span class="option">--logging-properties <var>PATH</var></span></kbd></dt>
+<dd><p>Reads logging configuration from a file. <strong>Default:</strong> <code class="docutils literal notranslate"><span class="pre">$HERITRIX_HOME/conf/logging.properties</span></code></p>
+</dd>
+<dt><kbd><span class="option">-p</span>, <span class="option">--web-port <var>PORT</var></span></kbd></dt>
+<dd><p>Sets the port the Web UI will listen on. <strong>Default:</strong> <code class="docutils literal notranslate"><span class="pre">8443</span></code></p>
+</dd>
+<dt><kbd><span class="option">-r</span>, <span class="option">--run-job <var>JOBNAME</var></span></kbd></dt>
+<dd><p>Runs the given Job when Heritrix starts. Heritrix will exit when the job finishes.</p>
+</dd>
+<dt><kbd><span class="option">-s</span>, <span class="option">--ssl-params <var>ARG</var></span></kbd></dt>
+<dd><p>Specifies a keystore path, keystore password, and key password for HTTPS use.  Separate the values with
+commas and do not include whitespace. By default Heritrix will generate a self-signed certificate the
+first time it is run.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>–web-auth digest|basic</dt><dd><p>Authentication mode for the web interface. <strong>Default:</strong> <code class="docutils literal notranslate"><span class="pre">digest</span></code></p>
+</dd>
+</dl>
+</section>
+<section id="environment-variables">
+<h3>Environment Variables<a class="headerlink" href="operating.html#environment-variables" title="Permalink to this heading"></a></h3>
+<p>The Heritrix launch script <code class="docutils literal notranslate"><span class="pre">./bin/heritrix</span></code> obeys the following environment variables:</p>
+<dl class="simple">
+<dt>FOREGROUND</dt><dd><p>Set to any value – e.g. ‘true’ – if you want to run heritrix in the foreground.</p>
+</dd>
+<dt>JAVA_HOME</dt><dd><p>Directory where Java is installed.</p>
+</dd>
+<dt>JAVA_OPTS</dt><dd><p>Additional options to pass to the JVM. For example specify <code class="docutils literal notranslate"><span class="pre">-Xmx1024M</span></code> to allocate 1GB of memory to Heritrix.</p>
+</dd>
+<dt>HERITRIX_HOME</dt><dd><p>Directory where Heritrix is installed.</p>
+</dd>
+<dt>HERITRIX_OUT</dt><dd><p>Path messages will be logged to when running in background mode. <strong>Default:</strong> <code class="docutils literal notranslate"><span class="pre">$HERITRIX_HOME/heritrix_out.log</span></code></p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="running-heritrix-under-docker">
+<h2>Running Heritrix under Docker<a class="headerlink" href="operating.html#running-heritrix-under-docker" title="Permalink to this heading"></a></h2>
+<p>Heritrix can also be run under Docker.  The Web UI is enabled by
+default and exposed via port 8443.  The following command creates
+and runs a detached container with username and password for the
+Web UI set to “admin” and “admin”, respectively.  It also maps the
+local <code class="docutils literal notranslate"><span class="pre">jobs</span></code> directory into the container.  Please ensure that
+mounted directories already exist or have the correct permissions!</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span><span class="nb">jobs</span>
+docker<span class="w"> </span>run<span class="w"> </span>--init<span class="w"> </span>--rm<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">8443</span>:8443<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;USERNAME=admin&quot;</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;PASSWORD=admin&quot;</span><span class="w"> </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/jobs:/opt/heritrix/jobs<span class="w"> </span>iipc/heritrix
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="operating.html#id1">Security Considerations</a> about securely running Heritrix.</p>
+<section id="configurations">
+<h3>Configurations<a class="headerlink" href="operating.html#configurations" title="Permalink to this heading"></a></h3>
+<p>To allow Heritrix to be run within a container, the environment variables
+(<code class="docutils literal notranslate"><span class="pre">FOREGROUND</span></code>, <code class="docutils literal notranslate"><span class="pre">JAVA_HOME</span></code>, <code class="docutils literal notranslate"><span class="pre">HERITRIX_HOME</span></code>) are already set and
+should not be changed.  The Heritrix command-line options can’t be
+accessed directly and are only exposed via environment variables:</p>
+<dl class="simple">
+<dt>USERNAME, PASSWORD</dt><dd><p><strong>(Required)</strong> The Web UI username and password.  Will be forwarded to <code class="docutils literal notranslate"><span class="pre">-a,</span> <span class="pre">--web-admin</span> <span class="pre">ARG</span></code>.</p>
+</dd>
+<dt>CREDSFILE</dt><dd><p>If either <code class="docutils literal notranslate"><span class="pre">USERNAME</span></code> or <code class="docutils literal notranslate"><span class="pre">PASSWORD</span></code> are not set or empty, <code class="docutils literal notranslate"><span class="pre">CREDSFILE</span></code> can alternatively be used to supply the Web UI credentials.  It should be a path within the Heritrix container which can be used to bind-mount local files or docker secrets.  See “&#64;” description for <code class="docutils literal notranslate"><span class="pre">-a,</span> <span class="pre">--web-admin</span> <span class="pre">ARG</span></code>.</p>
+</dd>
+<dt>JOBNAME</dt><dd><p>This forwards the jobname to the <code class="docutils literal notranslate"><span class="pre">-r,</span> <span class="pre">--run-job</span> <span class="pre">JOBNAME</span></code> command-line option, to run a single job and then quit.  Note that your container should not have a restart policy set to automatically restart on exit.</p>
+</dd>
+</dl>
+</section>
+</section>
+<section id="security-considerations">
+<span id="id1"></span><h2>Security Considerations<a class="headerlink" href="operating.html#security-considerations" title="Permalink to this heading"></a></h2>
+<p>Heritrix is a large and active network application that presents
+security implications, both on the local machine, where it runs, and
+remotely, on machines it contacts.</p>
+<section id="understanding-the-risks">
+<h3>Understanding the Risks<a class="headerlink" href="operating.html#understanding-the-risks" title="Permalink to this heading"></a></h3>
+<p>It is important to recognize that the Web UI allows remote control of
+the crawler in ways that could potentially disrupt a crawl, change the
+crawler’s behavior, read or write locally-accessible files, and perform
+or trigger other actions in the Java VM or local machine by the
+execution of arbitrary operator-supplied scripts.</p>
+<p>Unauthorized access to the Web UI could end or corrupt a crawl. It could
+also change the crawler’s behavior to be a nuisance to other network
+hosts. Files accessible to the crawler process could potentially be
+deleted, corrupted, or replaced, which could cause extensive problems on
+the crawling machine.</p>
+<p>Another potential risk is that worst-case or maliciously-crafted
+content, in conjunction with crawler issues, could disrupt the crawl or
+other files and operations on the local system. For example, in the
+past, without malicious intent, some rich-media content has caused
+runaway memory use in third-party libraries used by the crawler. This
+resulted in memory-exhaustion that stopped and corrupted the crawl in
+progress. Similarly, atypical input patterns have caused runaway CPU use
+by crawler link-extraction regular expressions, causing severely slow
+crawls. Crawl operators should monitor their crawls closely and use the
+project discussion list and issue database to stay current on crawler
+issues.</p>
+</section>
+<section id="network-access-control">
+<h3>Network Access Control<a class="headerlink" href="operating.html#network-access-control" title="Permalink to this heading"></a></h3>
+<p>Launched without any specified bind-address (‘-b’ flag), the crawler’s
+Web UI only binds to the localhost/loopback address (127.0.0.1), and
+therefore is only network-accessible from the same machine on which it
+was launched.</p>
+<p>If practical, this default setting should be maintained. A technique
+such as SSH tunneling could be used by authorized users of the crawling
+machine to enable Web access from their local machine to the crawling
+machine.For example, consider Heritrix running on a machine
+‘crawler.example.com’, with its Web UI only listening/bound on its
+localhost address. Assuming a user named ‘crawloperator’ has SSH access
+to ‘crawler.example.com’, she can issue the following SSH command from
+her local machine:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>-L<span class="w"> </span>localhost:9999:localhost:8443<span class="w"> </span>crawloperator@crawler.example.com<span class="w"> </span>-N
+</pre></div>
+</div>
+<p>This tells SSH to open a tunnel which forwards conections to
+“localhost:9999” (on the local machine) to the remote machines’ own idea
+of “localhost:8443”. As a result, the crawler’s Web UI will be available
+via “https://localhost:9999/” for as long as the tunnel exists (until
+the ssh command is killed or connection otherwise broken). No one else
+on the network may directly connect to port 8443 on
+‘crawler.example.com’ (since it is only listening on the local loopback
+address), and no one elsewhere on the net may directly connect to the
+operator’s port 9999 (since it also is only listening on the local
+loopback address).</p>
+<p>If you need Heritrix’s listening port bound to a public address, the
+‘-b’ command-line flag may be used. This flag takes, as an argument,
+the hostname/address to use. The ‘/’ character can be used to indicate
+all addresses.</p>
+<p>If you use this option, you should take special care to choose an even
+more unique/unguessable/brute-force-search-resistant set of login
+credentials. You may still want to consider using other network/firewall
+policies to block access from unauthorized origins.</p>
+</section>
+<section id="login-authentication-access-control">
+<h3>Login Authentication Access Control<a class="headerlink" href="operating.html#login-authentication-access-control" title="Permalink to this heading"></a></h3>
+<p>The administrative login and password only offer rudimentary protection
+against unauthorized access. For best security, you should be sure to:</p>
+<ol class="arabic simple">
+<li><p>Use a strong, unique username and password combination to secure the
+Web UI. Heritrix uses HTTPS to encrypt communication between the
+client and the Web UI. Keep in mind that setting the username and
+password on the command-line may result in their values being
+visible to other users of the crawling machine – for example, via
+the output of a tool like ‘ps’ that shows the command-lines used to
+launch processes. Additionally, note that these values are echoed in
+plain text in the <code class="docutils literal notranslate"><span class="pre">heritrix_out.log</span></code> for operator reference. As of
+Heritrix 3.1, the administrative username and password are no longer
+echoed to <code class="docutils literal notranslate"><span class="pre">heritrix_out.log</span></code>. Also, if the
+parameter supplied to the -a command line option is a string
+beginning with “&#64;”, the rest of the string is interpreted as a local
+file name containing the operator login and password. Thus, the
+credentials are not visible to other machines that use the process
+listing (ps) command.</p></li>
+<li><p>Launch the Heritrix-hosting Java VM with a user-account that has the
+minimum privileges necessary for operating the crawler. This will
+limit the damage in the event that the Web UI is accessed
+maliciously.</p></li>
+</ol>
+</section>
+</section>
+<section id="log-files">
+<h2>Log Files<a class="headerlink" href="operating.html#log-files" title="Permalink to this heading"></a></h2>
+<p>Each crawl job has its own set of log files found in the <code class="docutils literal notranslate"><span class="pre">logs</span></code> subdirectory of a job launch directory.</p>
+<p>Logging can be configured by modifying the <code class="docutils literal notranslate"><span class="pre">logging.properties</span></code> file
+that is located under the <code class="docutils literal notranslate"><span class="pre">$HERITRIX_HOME/conf</span></code> directory.</p>
+<section id="alerts-log">
+<h3>alerts.log<a class="headerlink" href="operating.html#alerts-log" title="Permalink to this heading"></a></h3>
+<p>This log contains alerts that indicate problems with a crawl.</p>
+</section>
+<section id="crawl-log">
+<h3>crawl.log<a class="headerlink" href="operating.html#crawl-log" title="Permalink to this heading"></a></h3>
+<p>Each URI that Heritrix attempts to fetch will cause a log line to be
+written to the <code class="docutils literal notranslate"><span class="pre">crawl.log</span></code> file. Below is a two line extract from the
+log.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>2011-06-23T17:12:08.802Z   200       1299 http://content-5.powells.com/robots.txt LREP http://content-5.powells.com/cgi-bin/imageDB.cgi?isbn=9780385518635 text/plain #014 20110623171208574+225 sha1:YIUOKDGOLGI5JYHDTXRFFQ5FF4N2EJRV - -
+2011-06-23T17:12:09.591Z   200      15829 http://www.identitytheory.com/etexts/poetics.html L http://www.identitytheory.com/ text/html #025 20110623171208546+922 sha1:7AJUMSDTOMT4FN7MBFGGNJU3Z56MLCMW - -
+</pre></div>
+</div>
+<dl>
+<dt>Field 1. Timestamp</dt><dd><p>The timestamp in ISO8601 format, to millisecond resolution. The time is the instant of logging.</p>
+</dd>
+<dt>Field 2. <a class="reference internal" href="glossary.html#status-codes"><span class="std std-ref">Fetch Status Code</span></a></dt><dd><p>Usually this is the HTTP response code but it can also be a negative number if URI processing was unexpectedly
+terminated.</p>
+</dd>
+<dt>Field 3. Document Size</dt><dd><p>The size of the downloaded document in bytes. For HTTP, this is the size of content only. The size excludes the
+HTTP response headers. For DNS, the size field is the total size for the DNS response.</p>
+</dd>
+<dt>Field 4. Downloaded URI</dt><dd><p>The URI of the document downloaded.</p>
+</dd>
+<dt>Field 5. Discovery Path</dt><dd><p>The breadcrumb codes (discovery path) showing the trail of downloads that lead to the downloaded URI. The length
+of the discovery path is limited to the last 50 hop-types. For example, a  62-hop path
+might appear as “12+LLRLLLRELLLLRLLLRELLLLRLLLRELLLLRLLLRELLLLRLLLRELE”.</p>
+<p>The breadcrumb codes are as follows.</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>R</p></td>
+<td><p>Redirect</p></td>
+</tr>
+<tr class="row-even"><td><p>E</p></td>
+<td><p>Embed</p></td>
+</tr>
+<tr class="row-odd"><td><p>X</p></td>
+<td><p>Speculative embed (aggressive/Javascript link extraction)</p></td>
+</tr>
+<tr class="row-even"><td><p>L</p></td>
+<td><p>Link</p></td>
+</tr>
+<tr class="row-odd"><td><p>P</p></td>
+<td><p>Prerequisite (as for DNS or robots.txt before another URI)</p></td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Field 6. Referrer</dt><dd><p>The URI that immediately preceded the downloaded URI. This is the referrer. Both the discovery path and the
+referrer will be empty for seed URIs.</p>
+</dd>
+<dt>Field 7. Mime Type</dt><dd><p>The downloaded document mime type.</p>
+</dd>
+<dt>Field 8. Worker Thread ID</dt><dd><p>The id of the worker thread that downloaded the document.</p>
+</dd>
+<dt>Field 9. Fetch Timestamp</dt><dd><p>The timestamp in RFC2550/ARC condensed digits-only format indicating when the network fetch was started. If
+appropriate the millisecond duration of the fetch is appended to the timestamp with a “;” character as
+separator.</p>
+</dd>
+<dt>Field 10. SHA1 Digest</dt><dd><p>The SHA1 digest of the content only (headers are not digested).</p>
+</dd>
+<dt>Field 11. Source Tag</dt><dd><p>The source tag inherited by the URI, if source tagging is enabled.</p>
+</dd>
+<dt>Field 12. Annotations</dt><dd><p>If an annotation has been set, it will be displayed. Possible annotations include: the number of times the URI
+was tried, the literal “lenTrunc”; if the download was truncanted due to exceeding configured size limits,
+the literal “timeTrunc”; if the download was truncated due to exceeding configured time limits or
+“midFetchTrunc”; if a midfetch filter determined the download should be truncated.</p>
+</dd>
+<dt>Field 13. WARC Filename</dt><dd><p>The name of the WARC/ARC file to which the crawled content is written. This value will only be written if
+thelogExtraInfo property of the loggerModule bean is set to true. This logged information will be written in
+JSON format.</p>
+</dd>
+</dl>
+</section>
+<section id="progress-statistics-log">
+<h3>progress-statistics.log<a class="headerlink" href="operating.html#progress-statistics-log" title="Permalink to this heading"></a></h3>
+<p>This log is written by the StatisticsTracker bean. At configurable
+intervals, a log line detailing the progress of the crawl is written to
+this file.</p>
+<dl class="simple">
+<dt>Field 1. timestamp</dt><dd><p>Timestamp in ISO8601 format indicating when the log line was written.</p>
+</dd>
+<dt>Field 2. discovered</dt><dd><p>Number of URIs discovered to date.</p>
+</dd>
+<dt>Field 3. queued</dt><dd><p>Number of URIs currently queued.</p>
+</dd>
+<dt>Field 3. downloaded</dt><dd><p>Number of URIs downloaded to date.</p>
+</dd>
+<dt>Field 4. doc/s(avg)</dt><dd><p>Number of document downloaded per second since the last snapshot. The value in parenthesis is measured since the
+crawl began.</p>
+</dd>
+<dt>Field 5. KB/s(avg)</dt><dd><p>Amount in kilobytes downloaded per second since the last snapshot. The value in parenthesis is measured since the
+crawl began.</p>
+</dd>
+<dt>Field 6. dl-failures</dt><dd><p>Number of URIs that Heritrix has failed to download.</p>
+</dd>
+<dt>Field 7. busy-thread</dt><dd><p>Number of toe threads busy processing a URI.</p>
+</dd>
+<dt>Field 8. mem-use-KB</dt><dd><p>Amount of memory in use by the Java Virtual Machine.</p>
+</dd>
+<dt>Field 9. heap-size-KB</dt><dd><p>The current heap size of the Java Virtual Machine.</p>
+</dd>
+<dt>Field 10. congestion</dt><dd><p>The congestion ratio is a rough estimate of how much initial capacity, as a multiple of current capacity, would
+be necessary to crawl the current workload at the maximum rate available given politeness settings. This value is
+calculated by comparing the number of internal queues that are progressing against those that are waiting for a
+thread to become available.</p>
+</dd>
+<dt>Field 11. max-depth</dt><dd><p>The size of the Frontier queue with the largest number of queued URIs.</p>
+</dd>
+<dt>Field 12. avg-depth</dt><dd><p>The average size of all the Frontier queues.</p>
+</dd>
+</dl>
+</section>
+<section id="runtime-errors-log">
+<h3>runtime-errors.log<a class="headerlink" href="operating.html#runtime-errors-log" title="Permalink to this heading"></a></h3>
+<p>This log captures unexpected exceptions and errors that occur during the
+crawl. Some may be due to hardware limitations (out of memory, although
+that error may occur without being written to this log), but most are
+probably due to software bugs, either in Heritrix’s core but more likely
+in one of its pluggable classes.</p>
+</section>
+<section id="uri-errors-log">
+<h3>uri-errors.log<a class="headerlink" href="operating.html#uri-errors-log" title="Permalink to this heading"></a></h3>
+<p>This log stores errors that resulted from attempted URI fetches.
+Usually the cause is non-existent URIs. This log is usually only of
+interest to advanced users trying to explain unexpected crawl behavior.</p>
+</section>
+</section>
+<section id="reports">
+<h2>Reports<a class="headerlink" href="operating.html#reports" title="Permalink to this heading"></a></h2>
+<p>Reports are found in the “reports” directory, which exists under the
+directory of a specific job launch.</p>
+<section id="crawl-summary-crawl-report-txt">
+<h3>Crawl Summary (crawl-report.txt)<a class="headerlink" href="operating.html#crawl-summary-crawl-report-txt" title="Permalink to this heading"></a></h3>
+<p>This file contains useful metrics about completed jobs.  The report is created by the StatisticsTracker bean.  This
+file is written at the end of the crawl.</p>
+<p>Below is sample output from this file:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Crawl Name: basic
+Crawl Status: Finished
+Duration Time: 1h33m38s651ms
+Total Seeds Crawled: 1
+Total Seeds not Crawled: 0
+Total Hosts Crawled: 1
+Total URIs Processed: 1337
+URIs Crawled successfully: 1337
+URIs Failed to Crawl: 0
+URIs Disregarded: 0
+Processed docs/sec: 0.24
+Bandwidth in Kbytes/sec: 4
+Total Raw Data Size in Bytes: 23865329 (23 MB)
+Novel Bytes: 23877375 (23 MB)
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Crawl Name</dt><dd><p>The user-defined name of the crawl.</p>
+</dd>
+<dt>Crawl Status</dt><dd><p>The status of the crawl, such as “Aborted” or “Finished.”</p>
+</dd>
+<dt>Duration Time</dt><dd><p>The duration of the crawl to the nearest millisecond.</p>
+</dd>
+<dt>Total Seeds Crawled</dt><dd><p>The number of seeds that were successfully crawled.</p>
+</dd>
+<dt>Total Seeds Not Crawled</dt><dd><p>The number of seeds that were not successfully crawled.</p>
+</dd>
+<dt>Total Hosts Crawled</dt><dd><p>The number of hosts that were crawled.</p>
+</dd>
+<dt>Total URIs Processed</dt><dd><p>The number of URIs that were processed.</p>
+</dd>
+<dt>URIs Crawled Successfully</dt><dd><p>The number of URIs that were crawled successfully.</p>
+</dd>
+<dt>URIs Failed to Crawl</dt><dd><p>The number of URIs that could not be crawled.</p>
+</dd>
+<dt>URIs Disregarded</dt><dd><p>The number of URIs that were not selected for crawling.</p>
+</dd>
+<dt>Processed docs/sec</dt><dd><p>The average number of documents processed per second.</p>
+</dd>
+<dt>Bandwidth in Kbytes/sec</dt><dd><p>The average number of kilobytes processed per second.</p>
+</dd>
+<dt>Total Raw Data Size in Bytes</dt><dd><p>The total amount of data crawled.</p>
+</dd>
+<dt>Novel Bytes</dt><dd><p>New bytes since last crawl.</p>
+</dd>
+</dl>
+</section>
+<section id="seeds-seeds-report-txt">
+<h3>Seeds (seeds-report.txt)<a class="headerlink" href="operating.html#seeds-seeds-report-txt" title="Permalink to this heading"></a></h3>
+<p>This file contains the crawling status of each seed.</p>
+<p>This file is created by the StatisticsTracker bean and is written at the end of the crawl.</p>
+<p>Below is sample output from this report:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[code] [status] [seed] [redirect]
+200 CRAWLED http://www.smokebox.net
+</pre></div>
+</div>
+<dl class="simple">
+<dt>code</dt><dd><p><a class="reference internal" href="glossary.html#status-codes"><span class="std std-ref">Status code</span></a> for the seed URI</p>
+</dd>
+<dt>status</dt><dd><p>Human readable description of whether the seed was crawled. For example, “CRAWLED.”</p>
+</dd>
+<dt>seed</dt><dd><p>The seed URI.</p>
+</dd>
+<dt>redirect</dt><dd><p>The URI to which the seed redirected.</p>
+</dd>
+</dl>
+</section>
+<section id="hosts-hosts-report-txt">
+<h3>Hosts (hosts-report.txt)<a class="headerlink" href="operating.html#hosts-hosts-report-txt" title="Permalink to this heading"></a></h3>
+<p>This file contains an overview of the hosts that were crawled.  It also displays the number of documents crawled and the bytes downloaded per host.</p>
+<p>This file is created by the StatisticsTracker bean and is written at the end of the crawl.</p>
+<p>Below is sample output from this file:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>1337 23877316 www.smokebox.net 0 0
+1 59 dns: 0 0
+0 0 dns: 0 0
+</pre></div>
+</div>
+<dl class="simple">
+<dt>#urls</dt><dd><p>The number of URIs crawled for the host.</p>
+</dd>
+<dt>#bytes</dt><dd><p>The number of bytes crawled for the host.</p>
+</dd>
+<dt>host</dt><dd><p>The hostname.</p>
+</dd>
+<dt>#robots</dt><dd><p>The number of URIs, for this host, excluded because of <code class="docutils literal notranslate"><span class="pre">robots.txt</span></code> restrictions. This number does not include linked URIs from the specifically excluded URIs.</p>
+</dd>
+<dt>#remaining</dt><dd><p>The number of URIs, for this host, that have not been crawled yet, but are in the queue.</p>
+</dd>
+<dt>#novel-urls</dt><dd><p>The number of new URIs crawled for this host since the last crawl.</p>
+</dd>
+<dt>#novel-bytes</dt><dd><p>The amount of new bytes crawled for this host since the last crawl.</p>
+</dd>
+<dt>#dup-by-hash-urls</dt><dd><p>The number of URIs, for this host, that had the same hash code and are essentially duplicates.</p>
+</dd>
+<dt>#dup-by-hash-bytes</dt><dd><p>The number of bytes of content, for this host, having the same hashcode.</p>
+</dd>
+<dt>#not-modified-urls</dt><dd><p>The number of URIs, for this host, that returned a <a class="reference external" href="http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#3xx_Redirection">304</a> status code.</p>
+</dd>
+<dt>#not-modified-bytes</dt><dd><p>The amount of of bytes of content, for this host, whose URIs returned a <a class="reference external" href="http://en.wikipedia.org/wiki/List_of_HTTP_status_codes#3xx_Redirection">304</a> status code.</p>
+</dd>
+</dl>
+</section>
+<section id="sourcetags-source-report-txt">
+<h3>SourceTags (source-report.txt)<a class="headerlink" href="operating.html#sourcetags-source-report-txt" title="Permalink to this heading"></a></h3>
+<p>This report contains a line item for each host, which includes the seed from which the host was reached.</p>
+<p>Below is a sample of this report:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[source] [host] [#urls]
+http://www.fizzandpop.com/ dns: 1
+http://www.fizzandpop.com/ www.fizzandpop.com 1
+</pre></div>
+</div>
+<dl class="simple">
+<dt>source</dt><dd><p>The seed.</p>
+</dd>
+<dt>host</dt><dd><p>The host that was accessed from the seed.</p>
+</dd>
+<dt>#urls</dt><dd><p>The number of URIs crawled for this seed host combination.</p>
+</dd>
+</dl>
+<p>Note that the SourceTags report will only be generated if the
+<code class="docutils literal notranslate"><span class="pre">sourceTagSeeds</span></code> property of the <code class="docutils literal notranslate"><span class="pre">TextSeedModule</span></code> bean is set to true.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;bean</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;seeds&quot;</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;org.archive.modules.seeds.TextSeedModule&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;sourceTagsSeeds&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/bean&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="mimetypes-mimetype-report-txt">
+<h3>Mimetypes (mimetype-report.txt)<a class="headerlink" href="operating.html#mimetypes-mimetype-report-txt" title="Permalink to this heading"></a></h3>
+<p>This file contains a report displaying the number of documents downloaded per mime type.  Also, the amount of data downloaded per mime type is displayed.</p>
+<p>This file is created by the StatisticsTracker bean and is written at the end of the crawl.</p>
+<p>Below is sample output from this report:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>624 13248443 image/jpeg
+450 8385573 text/html
+261 2160104 image/gif
+1 74708 application/x-javascript
+1 59 text/dns
+1 8488 text/plain
+</pre></div>
+</div>
+<dl class="simple">
+<dt>#urls</dt><dd><p>The number of URIs crawled for a given mime-type.</p>
+</dd>
+<dt>#bytes</dt><dd><p>The number of bytes crawled for a given mime-type.</p>
+</dd>
+<dt>mime-types</dt><dd><p>The mime-type.</p>
+</dd>
+</dl>
+</section>
+<section id="responsecode-responsecode-report-txt">
+<h3>ResponseCode (responsecode-report.txt)<a class="headerlink" href="operating.html#responsecode-responsecode-report-txt" title="Permalink to this heading"></a></h3>
+<p>This file contains a report displaying the number of documents downloaded per status code.  It covers successful
+codes only.  For failure codes see the crawl.log file.</p>
+<p>This file is created by the StatisticsTracker bean and is written at the end of the crawl.</p>
+<p>Below is sample output from this report:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[#urls] [rescode]
+1306 200
+31 404
+1 1
+</pre></div>
+</div>
+<dl class="simple">
+<dt>#urls</dt><dd><p>The number of URIs crawled for a given response code.</p>
+</dd>
+<dt>rescode</dt><dd><p>The response code.</p>
+</dd>
+</dl>
+</section>
+<section id="processors-processors-report-txt">
+<h3>Processors (processors-report.txt)<a class="headerlink" href="operating.html#processors-processors-report-txt" title="Permalink to this heading"></a></h3>
+<p>This report shows the activity of each processor involved in the crawl.
+For example, the <code class="docutils literal notranslate"><span class="pre">FetchHTTP</span></code> processor is included in the report. For
+this processor the number of URIs fetched is displayed. The report is
+organized to report on each Chain (Candidate, Fetch, and Disposition)
+and each processor in each chain. The order of the report is per the
+configuration order in the <code class="docutils literal notranslate"><span class="pre">crawler-beans.cxml</span></code> file.</p>
+<p>Below is sample output from this report:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>CandidateChain - Processors report - 200910300032
+  Number of Processors: 2
+
+Processor: org.archive.crawler.prefetch.CandidateScoper
+
+Processor: org.archive.crawler.prefetch.FrontierPreparer
+
+FetchChain - Processors report - 200910300032
+  Number of Processors: 9
+
+Processor: org.archive.crawler.prefetch.Preselector
+
+Processor: org.archive.crawler.prefetch.PreconditionEnforcer
+
+Processor: org.archive.modules.fetcher.FetchDNS
+
+Processor: org.archive.modules.fetcher.FetchHTTP
+  Function:          Fetch HTTP URIs
+  CrawlURIs handled: 1337
+  Recovery retries:   0
+
+Processor: org.archive.modules.extractor.ExtractorHTTP
+  Function:          Extracts URIs from HTTP response headers
+  CrawlURIs handled: 1337  Links extracted:   0
+
+Processor: org.archive.modules.extractor.ExtractorHTML
+  Function:          Link extraction on HTML documents
+  CrawlURIs handled: 449
+  Links extracted:   6894
+...
+</pre></div>
+</div>
+</section>
+<section id="frontiersummary-frontier-summary-report-txt">
+<h3>FrontierSummary (frontier-summary-report.txt)<a class="headerlink" href="operating.html#frontiersummary-frontier-summary-report-txt" title="Permalink to this heading"></a></h3>
+<p>This link displays a report showing the hosts that are queued for
+capture. The hosts are contained in multiple queues. The details of
+each Frontier queue is reported.</p>
+</section>
+<section id="toethreads-threads-report-txt">
+<h3>ToeThreads (threads-report.txt)<a class="headerlink" href="operating.html#toethreads-threads-report-txt" title="Permalink to this heading"></a></h3>
+<p>This link displays a report showing the activity of each thread used by
+Heritrix. The amount of time the thread has been running is displayed
+as well as thread state and thread Blocked/Waiting status.</p>
+</section>
+</section>
+<section id="action-directory">
+<h2>Action Directory<a class="headerlink" href="operating.html#action-directory" title="Permalink to this heading"></a></h2>
+<p>Each job directory contains an action directory. By placing files in the
+action directory you can trigger actions in a running crawl job, such as
+the addition of new URIs to the crawl.</p>
+<p>At a regular interval (by default less than a minute), the crawl will
+notice any new files in this directory, and take action based on their
+filename suffix and their contents. When the action is done, the file
+will be moved to the nearby ‘done’ directory. (For this reason, files
+should be composed outside the action directory, then moved there as an
+atomic whole. Otherwise, a file may be processed-and-moved while still
+being composed.)</p>
+<p>The following file suffixes are supported:</p>
+<dl>
+<dt>.seeds</dt><dd><p>A .seeds file should contain seeds that the Heritrix operator wants to include in the crawl. Placing a .seeds
+file in the action directory will add the seeds to the running crawl. The same directives as may be used in
+seeds-lists during initial crawl configuration may be used here.</p>
+<p>If seeds introduced into the crawl this way were already in the frontier (perhaps already a seed) this method
+does not force them.</p>
+</dd>
+<dt>.recover</dt><dd><p>.recover file will be treated as a traditional recovery journal. (The recovery journal can approximately reproduce
+the state of a crawl’s queues and already-included set, by repeating all URI-completion and URI-discovery events. A
+recovery journal reproduces less state than a proper checkpoint.) In a first pass, all lines beginning with Fs in the
+recovery journal will be considered included, so that they can not be enqueued again. Then in a second pass, lines
+starting with F+ will be re-enqueued for crawling (if not precluded by the first pass).</p>
+</dd>
+<dt>.include</dt><dd><p>A .include file will be treated as a recovery journal, but all URIs no matter what their line-prefix will be marked
+as already included, preventing them from being re-enqueued from that point on. (Already-enqueued URIs will still be
+eligible for crawling when they come up.) Using a .include file is a way to suppress the re-crawling of URIs.</p>
+</dd>
+<dt>.schedule</dt><dd><p>A .schedule file will be treated as a recovery journal, but all URIs no matter what their line-prefix will be offered
+for enqueueing. (However, if they are recognized as already-included, they will not be enqueued.) Using a .schedule
+file is a way to include URIs in a running crawl by inserting them into the Heritrix crawling queues.</p>
+</dd>
+<dt>.force</dt><dd><p>A .force file will be treated as a recovery journal with all the URIs marked for force scheduling.  Using a .force
+file is a way to guarantee that already-included URIs will be re-enqueued and (and thus eventually re-crawled).</p>
+</dd>
+</dl>
+<p>Any of these files may be gzipped. Any of the files in recovery journal
+format (<code class="docutils literal notranslate"><span class="pre">.recover</span></code>, <code class="docutils literal notranslate"><span class="pre">.include</span></code>, <code class="docutils literal notranslate"><span class="pre">.schedule</span></code>, <code class="docutils literal notranslate"><span class="pre">.force</span></code>) may have a <code class="docutils literal notranslate"><span class="pre">.s</span></code>
+inserted prior to the functional suffix (for example,
+<code class="docutils literal notranslate"><span class="pre">frontier.s.recover.gz</span></code>), which will cause the URIs to be scope-tested
+before any other insertion occurs.</p>
+<p>For example you could place the following <code class="docutils literal notranslate"><span class="pre">example.schedule</span></code> file in the action directory
+to schedule a URL:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>F+ http://example.com
+</pre></div>
+</div>
+<p>In order to use the action directory, the <code class="docutils literal notranslate"><span class="pre">ActionDirectory</span></code> bean must be
+configured in the <code class="docutils literal notranslate"><span class="pre">crawler-beans.cxml</span></code> file as illustrated below.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;bean</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;actionDirectory&quot;</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;org.archive.crawler.framework.ActionDirectory&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;actionDir&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;action&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;initialDelaySeconds&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;10&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;delaySeconds&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;30&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/bean&gt;</span>
+</pre></div>
+</div>
+<p>The recovery journal directives are listed below:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>F+</p></td>
+<td><p>Add</p></td>
+</tr>
+<tr class="row-even"><td><p>Fe</p></td>
+<td><p>Emit</p></td>
+</tr>
+<tr class="row-odd"><td><p>Fi</p></td>
+<td><p>Include</p></td>
+</tr>
+<tr class="row-even"><td><p>Fd</p></td>
+<td><p>Disregard</p></td>
+</tr>
+<tr class="row-odd"><td><p>Fr</p></td>
+<td><p>Re-enqueued</p></td>
+</tr>
+<tr class="row-even"><td><p>Fs</p></td>
+<td><p>Success</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ff</p></td>
+<td><p>Failure</p></td>
+</tr>
+</tbody>
+</table>
+<p>Note that the recovery journal format’s ‘F+’ lines may include a
+‘hops-path’ and ‘via URI’, which are preserved when a URI is enqueued
+via the above mechanisms, but that this may not be a complete
+representation of all URI state from its discovery in a normal crawl.</p>
+</section>
+<section id="checkpointing">
+<h2>Checkpointing<a class="headerlink" href="operating.html#checkpointing" title="Permalink to this heading"></a></h2>
+<p>Checkpointing a crawl job writes a representation of the current state of the job under the <code class="docutils literal notranslate"><span class="pre">checkpoints</span></code> directory
+which can be used to restart the job from the same point.</p>
+<p>Checkpointed state includes serialization of the main crawl job objects, copies of the current set of bdbje log files,
+and other files that represent the state of the crawl.  The checkpoint directory contains all that is required to
+recover a crawl.  Checkpointing also rotates the crawl logs, including the recover.gz log, if enabled.  Log files are
+NOT copied to the checkpoint directory.  They are left under the logs directory and are distinguished by a suffix.  The
+suffix is the checkpoint name.  For example, for checkpoint cp00001-20220930061713 the crawl log would be named
+crawl.log.cp00001-20220930061713.</p>
+<p>To make checkpointing faster and reduce disk space usage, hardlinks on systems that support them to collect the
+BerkeleyDB-JE files required to reproduce the crawler’s state.</p>
+<p>To run a checkpoint, click the checkpoint button on the job page of the WUI or invoke the checkpoint functionality
+through the REST API. While checkpointing, the crawl status will show as CHECKPOINTING.  When the checkpoint has
+completed, the crawler will resume crawling, unless it was in the paused state when the checkpoint was invoked.
+In this case, the crawler will re-enter the paused state.</p>
+<p>Recovery from a checkpoint has much in common with the recovery of a crawl using the frontier.recovery.log.</p>
+<section id="automated-checkpointing">
+<h3>Automated Checkpointing<a class="headerlink" href="operating.html#automated-checkpointing" title="Permalink to this heading"></a></h3>
+<p>To configure Heritrix to automatically run checkpoints periodically, set the
+<code class="docutils literal notranslate"><span class="pre">checkpointService.checkpointIntervalMinutes</span></code> property:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;bean</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;checkpointService&quot;</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;org.archive.crawler.framework.CheckpointService&quot;</span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;checkpointIntervalMinutes&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;60&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;checkpointOnShutdown&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="cm">&lt;!-- &lt;property name=&quot;checkpointsDir&quot; value=&quot;checkpoints&quot;/&gt; --&gt;</span>
+<span class="w">  </span><span class="nt">&lt;property</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;forgetAllButLatest&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/bean&gt;</span>
+</pre></div>
+</div>
+<p>When <code class="docutils literal notranslate"><span class="pre">checkpointOnShutdown</span></code> is enabled Heritrix will create a checkpoint if the job is running when the JVM is
+gracefully shutdown. Note that if Heritrix is killed, crashes or the server it is running on unexpectedly loses
+power the shutdown checkpoint will not be created. Consequently it may be ideal to enable both shutdown and interval
+checkpoints together.</p>
+<p>Setting <code class="docutils literal notranslate"><span class="pre">forgetAllButLatest`</span></code> will ensure only the latest checkpoint is kept.</p>
+</section>
+<section id="restarting-from-a-checkpoint">
+<h3>Restarting from a Checkpoint<a class="headerlink" href="operating.html#restarting-from-a-checkpoint" title="Permalink to this heading"></a></h3>
+<p>The web UI provides an option to restart a crawl from a checkpoint:</p>
+<ol class="arabic simple">
+<li><p>Checkpoint the running crawl by clicking the “checkpoint” button.</p></li>
+<li><p>When the checkpoint ends (a message will be displayed informing the operator of this event) terminate the crawl by
+clicking the “terminate” button.</p></li>
+<li><p>Teardown the job by clicking the “teardown” button.</p></li>
+<li><p>Re-build the job by clicking the “build” button.  At this point a dropdown box should appear under the command
+buttons.  The dropdown box has the names of the previously invoked checkpoints.</p></li>
+<li><p>Select a checkpoint from the dropdown.  The selected checkpoint will be used to start the newly built job.</p></li>
+<li><p>Click launch</p></li>
+<li><p>Click unpause</p></li>
+</ol>
+<p>The job will now begin running from the chosen checkpoint.</p>
+<p>When running a job from the command-line with the <code class="docutils literal notranslate"><span class="pre">--run-job</span></code> CLI option you can use the <code class="docutils literal notranslate"><span class="pre">--checkpoint</span></code> to restart
+the job from a named checkpoint. The special name <code class="docutils literal notranslate"><span class="pre">latest</span></code> will restart from the latest checkpoint if any exist,
+otherwise it will launch a new crawl.</p>
+</section>
+</section>
+<section id="crawl-recovery">
+<h2>Crawl Recovery<a class="headerlink" href="operating.html#crawl-recovery" title="Permalink to this heading"></a></h2>
+<p>During normal operation, the Heritrix Frontier keeps a journal. The
+journal is kept in the logs directory. It is named
+<code class="docutils literal notranslate"><span class="pre">frontier.recovery.gz</span></code>. If a crash occurs during a crawl, the
+<code class="docutils literal notranslate"><span class="pre">frontier.recover.gz</span></code> journal can be used to recreate the approximate
+status of the crawler at the time of the crash. In some cases, recovery
+may take an extended period of time, but it is usually much quicker than
+repeating the crashed crawl.</p>
+<p>If using this process, you are starting an all-new crawl, with your same
+(or modified) configuration, but this new crawl will take an extended
+detour at the beginning where it uses the prior crawl’s
+frontier-recover.gz output(s) to simulate the frontier status
+(discovered-URIs, enqueued-URIs) of the previous crawl. You would move
+aside all ARC/WARCs, logs, and checkpoints from the earlier crawl,
+retaining the logs and ARC/WARCs as a record of the crawl so far.</p>
+<p>Any ARC/WARC files that exist with the <code class="docutils literal notranslate"><span class="pre">.open</span></code> suffix were not properly
+closed by the previous run, and may include corrupt/truncated data in
+their last partial record. You may rename files with a <code class="docutils literal notranslate"><span class="pre">.warc.gz.open</span></code>
+suffix to <code class="docutils literal notranslate"><span class="pre">.warc.gz</span></code>, but consider validating such ARC/WARCs (by
+zcat’ing the file to /dev/null to check gzip validity, or other ARC/WARC
+tools for record completeness) before removing the “.open” suffix.</p>
+<section id="full-recovery">
+<h3>Full recovery<a class="headerlink" href="operating.html#full-recovery" title="Permalink to this heading"></a></h3>
+<p>To run the recovery process, relaunch the crashed crawler and copy the <code class="docutils literal notranslate"><span class="pre">frontier.recover.gz</span></code> file into the <a class="reference internal" href="operating.html#action-directory">Action
+Directory</a>. Then re-start the crawl. Heritrix will automatically load the recovery file and begin placing its URIs
+into the Frontier for crawling.</p>
+<p>If using a <code class="docutils literal notranslate"><span class="pre">.recover.gz</span></code> file, a single complete file must be used.
+(This is so that the action directory processing of one file at a time
+can do the complete first pass of ‘includes’, then the complete full
+pass of ‘schedules’, from one file. Supplying multiple <code class="docutils literal notranslate"><span class="pre">.recover.gz</span></code>
+files in series will result in an includes/schedules,
+includes/schedules, etc. cycle which will not produce the desired effect
+on the frontier.)</p>
+<p>While the file is being processed, any checkpoints (manual or
+auto-periodic) will <strong>not</strong> be a valid snapshot of the crawler state.
+(The frontier-recovery log process happens via a separate thread/path
+outside the newer checkpointing system.) Only when the file processing
+is completed (file moved to ‘done’) will the crawler be in an accurately
+checkpointable state.</p>
+<p>Once URIs start appearing in the queues (the recovery has entered the
+‘schedules’ pass), the crawler may be unpaused to begin fetching URIs
+while the rest of the ‘schedules’ recovery pass continues. However, the
+above note about checkpoints still applies: only when the
+frontier-recovery file-processing is finished may an accurate checkpoint
+occur. Also, unpausing the crawl in this manner may result in some URIs
+being rediscovered via new paths before the original discovery is
+replayed via the recovery process. (Many crawls may not mind this slight
+deviation from the recovered’ crawls state, but if your scoping is very
+path- or hop- dependent it could make a difference in what is
+scope-included.)</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Feeding the entire frontier back to the crawler is likely to
+produce many <em>“Problem line”</em> warnings in the job log. Some operators
+find it useful to allow the entire recovery file to be ingested by the
+crawler before attempting to resume (unpause), to help isolate this
+chatter, and to minimize generating duplicate crawldata during recovery.</p>
+</div>
+</section>
+<section id="split-recovery">
+<h3>Split Recovery<a class="headerlink" href="operating.html#split-recovery" title="Permalink to this heading"></a></h3>
+<p>An alternate way to run the recovery process is illustrated below. By
+eliminating irrelevant lines early (outside the recovery process), it
+may allow the recovery process to complete more quickly than the
+standard process. It also allows the process to proceed from many files,
+rather than a single file, so may give a better running indication of
+progress, and chances to checkpoint the recover.</p>
+<p>To run the alternate recovery process:</p>
+<ol class="arabic">
+<li><p>move aside prior logs and ARCs/WARCs as above</p></li>
+<li><p>relaunch the crashed crawler</p></li>
+<li><p>Split any source <code class="docutils literal notranslate"><span class="pre">frontier.recover.gz</span></code> files using commands like the
+following:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>zcat<span class="w"> </span>frontier.recover.gz<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;^Fs&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gzip<span class="w"> </span>&gt;<span class="w"> </span>frontier.include.gz
+zcat<span class="w"> </span>frontier.recover.gz<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;^F+&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gzip<span class="w"> </span>&gt;<span class="w"> </span>frontier.schedule.gz
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Build and launch the previously failed job (with the same or
+adjusted configuration). The job will now be paused.</p></li>
+<li><p>Move the <code class="docutils literal notranslate"><span class="pre">frontier.include.gz</span></code> file(s) into the action directory.
+The <code class="docutils literal notranslate"><span class="pre">action</span></code> directory is located at the same level in the file
+structure hierarchy as the <code class="docutils literal notranslate"><span class="pre">bin</span></code> directory. (If you have many, you
+may move them all in at once, or in small batches to better monitor
+their progress. At any point when all previously-presented files are
+processed – that is, moved to the ‘done’ directory – it is possible
+to make a valid checkpoint.)</p></li>
+<li><p>You may watch the progress of this ‘includes’ phase by viewing the
+web UI or <code class="docutils literal notranslate"><span class="pre">progress-statistics.log</span></code> and seeing the <code class="docutils literal notranslate"><span class="pre">discovered</span></code>
+count rise.</p></li>
+<li><p>When all <code class="docutils literal notranslate"><span class="pre">.includes</span></code> are finished loading, you can repeat the
+process with all the <code class="docutils literal notranslate"><span class="pre">.schedule</span></code> logs.</p></li>
+<li><p>When you notice a large number (many thousands) of URIs in the
+<code class="docutils literal notranslate"><span class="pre">queued</span></code> count, you may unpause the crawl to let new crawling
+proceed in parallel to the enqueueing of older URIs.</p></li>
+</ol>
+<p>You <strong>may</strong> drop all <code class="docutils literal notranslate"><span class="pre">.include</span></code> and <code class="docutils literal notranslate"><span class="pre">.schedule</span></code> files into the action
+directory before launch, if you are confident that the lexicographic
+ordering of their names will do the right thing (present all
+<code class="docutils literal notranslate"><span class="pre">.include</span></code> files first, and the <code class="docutils literal notranslate"><span class="pre">.schedule</span></code> files in the same order as the
+original crawl). But, that leave little opportunity to adjust/checkpoint
+the process: the action directory will discover them all and process
+them all in one tight loop.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To be sure of success and current crawl status against any sort
+of possible IO/format errors, in large recoveries of millions of
+records, you may want to wait for each step to complete before moving a
+file, or unpausing the job. Instead of looking at progress-statistics,
+simply wait for the file to move from action to action/done. Then add
+the second file. Wait again. Finally unpause the crawler.</p>
+<p>A recovery of 100M URIs may take days, so please be patient.</p>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="getting-started.html" class="btn btn-neutral float-left" title="Getting Started with Heritrix" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="configuring-jobs.html" class="btn btn-neutral float-right" title="Configuring Crawl Jobs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Internet Archive and contributors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
